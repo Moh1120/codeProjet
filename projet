@@ -1,0 +1,64 @@
+"""
+Jeu de devinette
+Auteur: Nori Mohamed
+Date : 04 octobre 2020
+Le but du jeu est de deviner un nombre entier tiré
+aléatoirement par par le programme entre deux bornes.
+Le programme va lire en entrée le nombre donné par le joueur
+IL va donner comme résultat si le nombre du joueur correspond au nombre
+choisit par la machine et si c'est le cas, combien de coup lui à t-il fallu
+pour trouver le nombre.
+"""
+
+# Importation des modules
+
+import random                       # module permettant de simuler le hasard
+
+# Définition des constantes globales
+
+SECRET = random.randint(0, 100)     # nombre aléatoire que le programme va choisir
+NB_ESSAIS_MAX = 6                   # essais maximum permit pour le joueur
+ESSAIS_J = 1
+NUMBER = None                       # création d'une constante qui va être utilisé dans le code principal
+
+# Code principal
+
+while ESSAIS_J < NB_ESSAIS_MAX and NUMBER != SECRET:
+    """
+    Le joueur va continuer à rentrer des valeurs tant que : 
+    son nomber d'essais ne dépasse pas celui maximum (non-comprit)
+    et que le nombre entré par le joueur n'est pas égal au nombre secret
+    Entrées : Nombre de l'utilisateur
+    Résultat : Comment est le nombre de l'utilisateur 
+               par rapport au nombre secret(plus grand, plus petit ou égal)
+    """
+
+    NUMBER = int(input())           # nombre entré par le joueur
+    if NUMBER == SECRET :
+                                    # si le nombre entré est le nombre secret
+        print(f"Gagné en {ESSAIS_J} essais !")  # résultat
+    elif NUMBER > SECRET :
+                                    # tant que le nombre entré est plus grand que le nombre secret
+        ESSAIS_J += 1               # le nombre d'essai du joueur augmente de 1
+        print("Trop grand")
+    else :
+                                    # Tant que le nombre entré est plus petit que le nombre secret
+        ESSAIS_J += 1
+        print("Trop petit")
+
+if NUMBER != SECRET :
+    """
+    Si le joueur n'a pas trouvé le nombre secret au bout de 5 essais
+    il lui reste une dernière chance.
+    Entrée : un nombre rentré par le joueur
+    Résultat : -si le joueur à gagné (en 6 coups)
+               -si le joueur a perdu, le programme affiche le nombre secret
+    """
+    NUMBER = int(input())           # dernier nombre entré acceptable pour le joueur
+    if NUMBER == SECRET:
+                                    # si le nombre est égal au nombre secret
+        print("Gagné en 6 essais !")
+    else :
+                                    # si le nombre est différent du nombre secret
+        print(f"Perdu ! Le secret était {SECRET}")
+
